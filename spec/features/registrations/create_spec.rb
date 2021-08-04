@@ -19,30 +19,30 @@ RSpec.describe 'competition show page' do
     Registration.create(team: @team_2, competition: @competition_1)
     Registration.create(team: @team_3, competition: @competition_1)
   end
-  #user story 2
-  it 'displays competition name, location, and sport' do
+  it 'competition show page has link to register new team' do
     visit competition_path(@competition_1)
 
-    expect(page).to have_content(@competition_1.name)
-    expect(page).to have_content(@competition_1.location)
-    expect(page).to have_content(@competition_1.sport)
+    click_link 'Register New Team'
+
+    expect(current_path).to eq("/competitions/#{@competition_1.id}/registration")
   end
-  it 'displays the nickname and hometown of all teams registered' do
-    visit competition_path(@competition_1)
+  it 'displays form to fill out new teams hometown and nickname' do
+    visit "/competitions/#{@competition_1.id}/registration"
 
-    within ("#team-#{@team_1.id}") do
-      expect(page).to have_content(@team_1.nickname)
-      expect(page).to have_content(@team_1.hometown)
-    end
+    fill_in 'Nickname', with: 'Spiked Punch'
+    fill_in 'Hometown', with: 'Denver, CO'
+    click_button 'Register'
 
-    within ("#team-#{@team_2.id}") do
-      expect(page).to have_content(@team_2.nickname)
-      expect(page).to have_content(@team_2.hometown)
-    end
+    expect(current_path).to eq(competition_path(@competition_1))
   end
-  it 'displays the average age of all players in the competition' do
-    visit competition_path(@competition_1)
+  it 'displays new team on competition show page' do
+    visit "/competitions/#{@competition_1.id}/registration"
 
-    expect(page).to have_content('Competition Average Player Age: 34')
+    fill_in 'Nickname', with: 'Spiked Punch'
+    fill_in 'Hometown', with: 'Denver, CO'
+    click_button 'Register'
+
+    expect(current_path).to eq(competition_path(@competition_1))
+    expect(page).to have_content('Spiked Punch')
   end
 end
