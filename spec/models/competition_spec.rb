@@ -28,7 +28,7 @@ RSpec.describe Competition do
   describe 'instance methods' do
     describe '#competition_avg_age' do
       it 'returns the players avg age for competition' do
-        expect(@competition_1.competition_avg_age).to eq(34)
+        expect(@competition_1.player_avg_age).to eq(34)
       end
     end
   end

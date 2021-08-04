@@ -42,6 +42,6 @@ RSpec.describe 'competition show page' do
   it 'displays the average age of all players in the competition' do
     visit competition_path(@competition_1)
 
-    expect(page).to have_content('Competition Average Player Age: 35')
+    expect(page).to have_content('Competition Average Player Age: 34')
   end
 end
