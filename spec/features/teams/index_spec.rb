@@ -29,4 +29,12 @@ RSpec.describe 'teams index page' do
       expect(page).to have_content("Team Average Age: 33")
     end
   end
+
+  xit 'orders teams by average age youngest to oldest' do
+    visit teams_path
+
+    expect(@team_1).to appear_before(@team_3)
+    expect(@team_2).to_not appear_before(@team_3)
+    expect(@team_3).to appear_before(@team_2)
+  end
 end
