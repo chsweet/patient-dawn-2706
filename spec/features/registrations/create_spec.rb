@@ -24,10 +24,10 @@ RSpec.describe 'competition show page' do
 
     click_link 'Register New Team'
 
-    expect(current_path).to eq("/competitions/#{@competition_1.id}/registration")
+    expect(current_path).to eq(new_competition_registration_path(@competition_1))
   end
   it 'displays form to fill out new teams hometown and nickname' do
-    visit "/competitions/#{@competition_1.id}/registration"
+    visit new_competition_registration_path(@competition_1)
 
     fill_in 'Nickname', with: 'Spiked Punch'
     fill_in 'Hometown', with: 'Denver, CO'
@@ -36,7 +36,7 @@ RSpec.describe 'competition show page' do
     expect(current_path).to eq(competition_path(@competition_1))
   end
   it 'displays new team on competition show page' do
-    visit "/competitions/#{@competition_1.id}/registration"
+    visit new_competition_registration_path(@competition_1)
 
     fill_in 'Nickname', with: 'Spiked Punch'
     fill_in 'Hometown', with: 'Denver, CO'
