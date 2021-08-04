@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'competition show page' do
+RSpec.describe 'competition registration create page' do
   before :each do
     @competition_1 = Competition.create!(name: 'Snowmass Doubles', location: 'Aspen, CO', sport: 'volleyball')
 
